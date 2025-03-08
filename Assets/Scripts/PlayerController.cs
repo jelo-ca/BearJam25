@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float moveResponsiveness = 5f;
+    [SerializeField] float moveResponsivenessAir = 5f;
 
     [SerializeField] float fallSpeed = 5f;
 
@@ -18,8 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode resetKey = KeyCode.R;
 
     public bool isGrounded = true;
+    public bool didntDoubleJumpedYet = true;
 
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
         ProcessInput();
         CheckGround();
 
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
     }
 
     private void GetInput()
@@ -47,13 +49,22 @@ public class PlayerController : MonoBehaviour
     private void ProcessInput()
     {
         // hehe, funky math :3
-        rb.linearVelocity = rb.linearVelocity + Vector2.right * (xInput * moveSpeed * Vector2.right - rb.linearVelocity) * (1-Mathf.Exp(-moveResponsiveness*Time.deltaTime));
+        rb.linearVelocity = rb.linearVelocity + Vector2.right * (xInput * moveSpeed * Vector2.right - rb.linearVelocity) * (1-Mathf.Exp(-(isGrounded ? moveResponsiveness : moveResponsivenessAir)*Time.deltaTime));
         //transform.position = new Vector3(transform.position.x + xInput * Time.deltaTime * moveSpeed, transform.position.y);
     }
 
     private void Jump()
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (isGrounded)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            didntDoubleJumpedYet = true;
+        }
+        else if (didntDoubleJumpedYet)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            didntDoubleJumpedYet = false;
+        }
     }
 
     private void CheckGround()
@@ -68,6 +79,6 @@ public class PlayerController : MonoBehaviour
         // If it hits something...
         //Debug.Log(hit.collider.tag);
         isGrounded = (Physics2D.Raycast(transform.position, -Vector2.up, 1.3f, LayerMask.GetMask("Floor Layer"))) ? true : false;
-        Debug.DrawRay(transform.position, -Vector2.up * 1.3f, Color.green);
+        //Debug.DrawRay(transform.position, -Vector2.up * 1.3f, Color.green);
     }
 }
