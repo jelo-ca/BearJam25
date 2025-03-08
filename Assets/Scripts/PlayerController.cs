@@ -46,8 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x + xInput * Time.deltaTime * moveSpeed, transform.position.y);
 
-        Debug.Log(rb.linearVelocityY);
-        rb.linearVelocityY = ((rb.linearVelocityY < 1) && !isGrounded) ? -fallSpeed : rb.linearVelocityY;
+        //rb.linearVelocityY = ((rb.linearVelocityY < 1) && !isGrounded) ? -fallSpeed : rb.linearVelocityY;
     }
 
     private void Jump()
@@ -62,6 +61,6 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, -Vector2.up * .5f, Color.green);
 
         // If it hits something...
-        isGrounded = (hit.collider != null) ? true : false;
+        isGrounded = (hit.collider.CompareTag("Floor")) ? true : false;
     }
 }
