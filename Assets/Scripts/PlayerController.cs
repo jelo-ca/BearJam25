@@ -72,6 +72,6 @@ public class PlayerController : MonoBehaviour
         // BoxCast a the character down a little bit (0.01) until it hits the anything part of the "Floor Layer"
         // 2.991782f is the player x size idk how to get
         // 4.42372f is the player y size 
-        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, 4.42372f), 0, Vector2.down, .01, LayerMask.GetMask("Floor Layer"))) ? true : false;
+        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, 4.42372f), 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
     }
 }
