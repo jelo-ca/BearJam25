@@ -478,7 +478,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &800441455
 Transform:
@@ -510,10 +510,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 20
   moveSpeed: 12
+  moveResponsiveness: 17
+  moveResponsivenessAir: 5
   fallSpeed: 5
   jumpKey: 32
   resetKey: 114
   isGrounded: 0
+  didntDoubleJumpedYet: 1
 --- !u!61 &800441457
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -524,7 +527,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 547f6a4b3f38c3046bb6137b10c50037, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -655,7 +658,7 @@ GameObject:
   - component: {fileID: 1832295482}
   - component: {fileID: 1832295481}
   - component: {fileID: 1832295480}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -859,10 +862,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.28, y: 0.31}
+  m_Size: {x: 0.9375, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2123926910
