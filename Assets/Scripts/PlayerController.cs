@@ -45,8 +45,6 @@ public class PlayerController : MonoBehaviour
     private void ProcessInput()
     {
         transform.position = new Vector3(transform.position.x + xInput * Time.deltaTime * moveSpeed, transform.position.y);
-
-        //rb.linearVelocityY = ((rb.linearVelocityY < 1) && !isGrounded) ? -fallSpeed : rb.linearVelocityY;
     }
 
     private void Jump()
