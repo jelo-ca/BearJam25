@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 8f3c963ff11144642ba8f72bdeeaea0b
+guid: fe28197ff1b35b549ba179abb5c02336
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2987179049035696926
-    second: walking_0
+      213: -4312366431063467818
+    second: Jumping_0
   - first:
-      213: -4154626181522259262
-    second: walking_1
+      213: -4048530547193403679
+    second: Jumping_1
   - first:
-      213: -7423615830899905516
-    second: walking_2
+      213: 2826979704478040783
+    second: Jumping_2
   - first:
-      213: 4036955197636849006
-    second: walking_3
-  - first:
-      213: -7918336409512017615
-    second: walking_4
-  - first:
-      213: 1250286383453380257
-    second: walking_5
+      213: 5907000883226147584
+    second: Jumping_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walking_0
+      name: Jumping_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e4fcbd4b786b86d0800000000000000
-      internalID: -2987179049035696926
+      spriteID: 6d8942f24956724c0800000000000000
+      internalID: -4312366431063467818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_1
+      name: Jumping_1
       rect:
         serializedVersion: 2
         x: 32
@@ -165,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c204d3008dc756c0800000000000000
-      internalID: -4154626181522259262
+      spriteID: 1e62838daeab0d7c0800000000000000
+      internalID: -4048530547193403679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_2
+      name: Jumping_2
       rect:
         serializedVersion: 2
         x: 64
@@ -187,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41cae3adbb40af890800000000000000
-      internalID: -7423615830899905516
+      spriteID: fc207a030137b3720800000000000000
+      internalID: 2826979704478040783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_3
+      name: Jumping_3
       rect:
         serializedVersion: 2
         x: 96
@@ -209,52 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6daf411d55260830800000000000000
-      internalID: 4036955197636849006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walking_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1318efa1dfa6c1290800000000000000
-      internalID: -7918336409512017615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walking_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ae1f3967d8e95110800000000000000
-      internalID: 1250286383453380257
+      spriteID: 00bfc94b102e9f150800000000000000
+      internalID: 5907000883226147584
       vertices: []
       indices: 
       edges: []
@@ -263,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5aedb5169968c3c4a90488a300475105
+    spriteID: 408911c9085963240bd0aa780d2d6aa8
     internalID: 0
     vertices: []
     indices: 
@@ -273,12 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      walking_0: -2987179049035696926
-      walking_1: -4154626181522259262
-      walking_2: -7423615830899905516
-      walking_3: 4036955197636849006
-      walking_4: -7918336409512017615
-      walking_5: 1250286383453380257
+      Jumping_0: -4312366431063467818
+      Jumping_1: -4048530547193403679
+      Jumping_2: 2826979704478040783
+      Jumping_3: 5907000883226147584
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
