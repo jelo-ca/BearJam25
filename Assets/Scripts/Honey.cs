@@ -6,7 +6,8 @@ public class Honey : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.transform.localScale /= 2;
+            //cam.orthographicSize /= 2;
+            collision.gameObject.GetComponent<PlayerController>().DecreaseSize();
             Destroy(gameObject);
         }
     }

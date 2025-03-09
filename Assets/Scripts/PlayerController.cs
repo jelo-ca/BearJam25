@@ -94,14 +94,20 @@ public class PlayerController : MonoBehaviour
         // BoxCast a the character down a little bit (0.01) until it hits the anything part of the "Floor Layer"
         // 2.991782f is the player x size idk how to get
         // 4.42372f is the player y size 
-        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, transform.localScale.x * 5f), 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
+        Debug.Log(transform.localScale);
+        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, 4.42372f) * transform.localScale / new Vector2(.5f, .5f), 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
     }
 
     private void IncreaseSize()
     {
-        Vector3 scaleChange = new Vector3(growRate, growRate, growRate);
-        cam.orthographicSize += Mathf.Abs(xInput) *  cameraGrowthRate * Time.deltaTime;
-        transform.localScale += Mathf.Abs(xInput) * scaleChange;
+        cam.orthographicSize *= Mathf.Exp(Mathf.Abs(xInput) *  cameraGrowthRate * Time.deltaTime);
+        transform.localScale *= Mathf.Exp(Mathf.Abs(xInput) *  growRate * Time.deltaTime);
+    }
+
+    public void DecreaseSize()
+    {
+        cam.orthographicSize /= Mathf.Pow(2, cameraGrowthRate/growRate);
+        transform.localScale /= 2;
     }
 
     private void FlipPlayer()
