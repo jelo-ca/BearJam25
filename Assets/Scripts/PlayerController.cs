@@ -1,11 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
     private float xInput;
+    private Camera cam;
 
     [Header("Movemment Settings")]
     [SerializeField] float jumpForce = 5f;
@@ -14,28 +17,35 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveResponsivenessAir = 5f;
 
     [SerializeField] float growRate = 0.2f;
-
+    [SerializeField] float cameraGrowthRate = 2f;
     [SerializeField] float fallSpeed = 5f;
 
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode resetKey = KeyCode.R;
 
+    [Header("Animations")]
+    private Animator anim;
+
     public bool isGrounded = true;
     public bool didntDoubleJumpedYet = true;
 
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         GetInput();
         ProcessInput();
+        FlipPlayer();
         CheckGround();
         IncreaseSize();
+        Animate();
 
         //Debug.Log(isGrounded);
     }
@@ -48,6 +58,10 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+        if (Input.GetKeyDown(resetKey))
+        {
+            GameManager.instance.ResetLevel();
+        }
     }
 
     private void ProcessInput()
@@ -59,15 +73,19 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        
         if (isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             didntDoubleJumpedYet = true;
+            anim.SetTrigger("Jump");
         }
         else if (didntDoubleJumpedYet)
         {
+            rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             didntDoubleJumpedYet = false;
+            anim.SetTrigger("Jump");
         }
     }
 
@@ -79,32 +97,21 @@ public class PlayerController : MonoBehaviour
         isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, transform.localScale.x * 5f), 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
     }
 
-    void OnDrawGizmos()
-    {
-        if (!Application.isPlaying) return; // Only show in play mode
-
-        // Define the box position, size, and direction
-        Vector2 boxSize = new Vector2(2.991782f, transform.localScale.x * 5f);
-        Vector2 boxOrigin = (Vector2)transform.position;
-        float castDistance = 0.01f;
-        Vector2 castDirection = Vector2.down;
-
-        // Perform the BoxCast and get the hit info
-        RaycastHit2D hit = Physics2D.BoxCast(boxOrigin, boxSize, 0, castDirection, castDistance, LayerMask.GetMask("Floor Layer"));
-
-        // Change the Gizmos color
-        Gizmos.color = hit ? Color.green : Color.red;
-
-        // Draw the starting position of the box
-        Gizmos.DrawWireCube(boxOrigin, boxSize);
-
-        // Draw the cast area
-        Gizmos.DrawWireCube(boxOrigin + castDirection * castDistance, boxSize);
-    }
-
     private void IncreaseSize()
     {
         Vector3 scaleChange = new Vector3(growRate, growRate, growRate);
+        cam.orthographicSize += Mathf.Abs(xInput) *  cameraGrowthRate * Time.deltaTime;
         transform.localScale += Mathf.Abs(xInput) * scaleChange;
+    }
+
+    private void FlipPlayer()
+    {
+        transform.eulerAngles = (xInput < 0) ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+    }
+
+    private void Animate()
+    {
+        anim.SetFloat("Speed", Mathf.Abs(xInput));
+        anim.SetBool("isGrounded", isGrounded);
     }
 }
