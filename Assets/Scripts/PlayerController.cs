@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         ProcessInput();
         FlipPlayer();
         CheckGround();
+        Squished();
         IncreaseSize();
         Animate();
 
@@ -95,19 +96,34 @@ public class PlayerController : MonoBehaviour
         // 2.991782f is the player x size idk how to get
         // 4.42372f is the player y size 
         Debug.Log(transform.localScale);
-        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, 4.42372f) * transform.localScale / new Vector2(.5f, .5f), 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
+        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, 4.42372f) * transform.localScale.x * 2f, 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
     }
 
     private void IncreaseSize()
     {
-        cam.orthographicSize *= Mathf.Exp(Mathf.Abs(xInput) *  cameraGrowthRate * Time.deltaTime);
-        transform.localScale *= Mathf.Exp(Mathf.Abs(xInput) *  growRate * Time.deltaTime);
+        cam.orthographicSize *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x/moveSpeed) * cameraGrowthRate * Time.deltaTime);
+        transform.localScale *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x / moveSpeed) * growRate * Time.deltaTime);
     }
 
     public void DecreaseSize()
     {
         cam.orthographicSize /= Mathf.Pow(2, cameraGrowthRate/growRate);
         transform.localScale /= 2;
+    }
+
+    public void Squished()
+    {
+        ContactPoint2D[] contacts = new ContactPoint2D[10];
+        int n = rb.GetContacts(contacts);
+        for (int i = 0; i <= n; i++)
+        {
+            Debug.Log(contacts[i].separation);
+            if (contacts[i].enabled && contacts[i].separation <= -.2)
+            {
+                GameManager.instance.ResetLevel();
+                n = 0;
+            }
+        }
     }
 
     private void FlipPlayer()
