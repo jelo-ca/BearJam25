@@ -546,7 +546,8 @@ MonoBehaviour:
   moveSpeed: 12
   moveResponsiveness: 17
   moveResponsivenessAir: 5
-  growRate: 0.002
+  growRate: 2
+  cameraGrowthRate: 2
   fallSpeed: 5
   jumpKey: 32
   resetKey: 114
