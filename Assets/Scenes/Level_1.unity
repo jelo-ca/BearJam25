@@ -950,8 +950,20 @@ PrefabInstance:
       value: Background_0
       objectReference: {fileID: 0}
     - target: {fileID: 8372779066745397344, guid: 9ea8152d9f616544da141493d848df6f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372779066745397344, guid: 9ea8152d9f616544da141493d848df6f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372779066745397344, guid: 9ea8152d9f616544da141493d848df6f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372779066745397344, guid: 9ea8152d9f616544da141493d848df6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.64
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 8372779066745397344, guid: 9ea8152d9f616544da141493d848df6f, type: 3}
       propertyPath: m_LocalPosition.y
