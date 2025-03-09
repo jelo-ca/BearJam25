@@ -97,9 +97,31 @@ public class PlayerController : MonoBehaviour
         // BoxCast a the character down a little bit (0.01) until it hits the anything part of the "Floor Layer"
         // 2.991782f is the player x size idk how to get
         // 4.42372f is the player y size 
-        Debug.Log(transform.localScale);
-        isGrounded = (Physics2D.BoxCast(transform.position, new Vector2(2.991782f, 4.42372f) * transform.localScale.x * 2f, 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
+        isGrounded = (Physics2D.BoxCast(transform.position + new Vector3(-0.04532099f, -0.2114919f, 0) * transform.localScale.x, new Vector2(3.100352f, 4.595364f) * transform.localScale.x, 0, Vector2.down, .01f, LayerMask.GetMask("Floor Layer"))) ? true : false;
     }
+    void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return; // Only show in play mode
+
+        // Define the box position, size, and direction
+        Vector2 boxSize = new Vector2(3.100352f, 4.595364f) * transform.localScale.x;
+        Vector2 boxOrigin = (Vector2)(transform.position + new Vector3(-0.04532099f, -0.2114919f, 0) * transform.localScale.x);
+        float castDistance = 0.01f;
+        Vector2 castDirection = Vector2.down;
+
+        // Perform the BoxCast and get the hit info
+        RaycastHit2D hit = Physics2D.BoxCast(boxOrigin, boxSize, 0, castDirection, castDistance, LayerMask.GetMask("Floor Layer"));
+
+        // Change the Gizmos color
+        Gizmos.color = hit ? Color.green : Color.red;
+
+        // Draw the starting position of the box
+        Gizmos.DrawWireCube(boxOrigin, boxSize);
+
+        // Draw the cast area
+        Gizmos.DrawWireCube(boxOrigin + castDirection * castDistance, boxSize);
+    }
+
 
     private void IncreaseSize()
     {
@@ -129,7 +151,6 @@ public class PlayerController : MonoBehaviour
             int n = rb.GetContacts(contacts);
             for (int i = 0; i <= n; i++)
             {
-                Debug.Log(contacts[i].separation);
                 if (contacts[i].enabled && contacts[i].separation <= -.1)
                 {
                     GameManager.instance.ResetLevel();
