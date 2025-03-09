@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
         }
 
         InitializeLevel();
+
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            MusicManager.instance.PlayMenuMusic();
+        }
     }
 
     private void InitializeLevel()
@@ -67,6 +72,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        MusicManager.instance.PlayGameMusic();
     }
 
     public void ResetLevel()
