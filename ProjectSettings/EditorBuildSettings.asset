@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cadens Level.unity
     guid: 80ff51b6c6591424c9c8d00313dfe16b
+  - enabled: 1
+    path: Assets/Scenes/Cadens Level 2.unity
+    guid: 2ecba66376d0f3c4f9481df2c90bfc57
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
