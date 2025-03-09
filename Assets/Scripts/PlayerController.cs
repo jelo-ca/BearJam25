@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded = true;
     public bool didntDoubleJumpedYet = true;
+    public bool justJammed = false;
 
 
     void Awake()
@@ -117,20 +118,28 @@ public class PlayerController : MonoBehaviour
     {
         cam.orthographicSize *= Mathf.Pow(2, cameraGrowthRate / growRate);
         transform.localScale *= 2;
+        justJammed = true;
     }
 
     public void Squished()
     {
-        ContactPoint2D[] contacts = new ContactPoint2D[10];
-        int n = rb.GetContacts(contacts);
-        for (int i = 0; i <= n; i++)
+        if (!justJammed)
         {
-            Debug.Log(contacts[i].separation);
-            if (contacts[i].enabled && contacts[i].separation <= -.2)
+            ContactPoint2D[] contacts = new ContactPoint2D[32];
+            int n = rb.GetContacts(contacts);
+            for (int i = 0; i <= n; i++)
             {
-                GameManager.instance.ResetLevel();
-                n = 0;
+                Debug.Log(contacts[i].separation);
+                if (contacts[i].enabled && contacts[i].separation <= -.1)
+                {
+                    GameManager.instance.ResetLevel();
+                    n = 0;
+                }
             }
+        }
+        else
+        {
+            justJammed = false;
         }
     }
 
