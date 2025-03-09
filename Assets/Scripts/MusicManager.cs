@@ -31,10 +31,16 @@ public class MusicManager : MonoBehaviour
 
     public void PlayGameMusic()
     {
-        if(audioSource.clip != music[1])
+        if (audioSource.clip != music[1])
         {
             audioSource.clip = music[1];
             audioSource.Play();
         }
     }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
 }
+    

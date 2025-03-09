@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private Transform spawnPoint;
     private Camera cam;
+    public GameObject videoPlayer;
 
     void Awake()
     {
@@ -98,5 +100,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         MusicManager.instance.PlayMenuMusic();
+    }
+
+    public void EndGame()
+    {
+        MusicManager.instance.StopMusic();
+        videoPlayer.SetActive(true);
     }
 }
