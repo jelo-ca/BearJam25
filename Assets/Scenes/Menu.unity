@@ -594,11 +594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5063622764181982521, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000015259
+      value: -0.00002746
       objectReference: {fileID: 0}
     - target: {fileID: 5063622764181982521, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -281.24368
+      value: -369.13
       objectReference: {fileID: 0}
     - target: {fileID: 5946328882119464110, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -610,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5946328882119464110, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000076294
+      value: -0.000048897
       objectReference: {fileID: 0}
     - target: {fileID: 5946328882119464110, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -636,6 +636,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8769261280474683520, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 871768a37e98c6c43b20ad12ca7ba67f, type: 3}
+    - target: {fileID: 8769261280474683520, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9014831797176388591, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_SizeDelta.x
       value: 316.6422
@@ -646,11 +654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9014831797176388591, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000076293945
+      value: -0.000030518
       objectReference: {fileID: 0}
     - target: {fileID: 9014831797176388591, guid: 5b79e020935e21c48a162a04e6fb828a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -149.24367
+      value: -229
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
