@@ -30,12 +30,14 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     public bool didntDoubleJumpedYet = true;
     public int justJammed = 0;
+    public float camScale = 1f;
 
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        camScale = cam.orthographicSize;
         anim = GetComponent<Animator>();
     }
 
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
         IncreaseSize();
         Animate();
         Audio();
+        UpdateCameraZoom();
 
         //Debug.Log(isGrounded);
     }
@@ -74,9 +77,15 @@ public class PlayerController : MonoBehaviour
     private void ProcessInput()
     {
         // hehe, funky math :3
-        rb.linearVelocity = rb.linearVelocity + Vector2.right * (xInput * moveSpeed * Vector2.right - rb.linearVelocity) * (1-Mathf.Exp(-(isGrounded ? moveResponsiveness : moveResponsivenessAir)*Time.deltaTime));
+        rb.linearVelocity = rb.linearVelocity + Vector2.right * (xInput * moveSpeed * Vector2.right - rb.linearVelocity) * (1-Mathf.Exp(-(isGrounded ? moveResponsiveness : moveResponsivenessAir) * Time.deltaTime));
         //transform.position = new Vector3(transform.position.x + xInput * Time.deltaTime * moveSpeed, transform.position.y);
     }
+
+    private void UpdateCameraZoom()
+    {
+        cam.orthographicSize = cam.orthographicSize + (camScale-cam.orthographicSize) * (1f-Mathf.Exp(-5f*Time.deltaTime));
+    }
+
 
     private void Jump()
     {
@@ -132,21 +141,28 @@ public class PlayerController : MonoBehaviour
     private void IncreaseSize()
     {
         rb.mass = (transform.localScale.x / 0.2f);
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        camScale *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x/moveSpeed) * cameraGrowthRate * Time.deltaTime);
+=======
+>>>>>>> Stashed changes
 
         cam.orthographicSize *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x/moveSpeed) * cameraGrowthRate * Time.deltaTime);
+>>>>>>> 85e217418b442bf59956873bfba60a77eb298048
         transform.localScale *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x / moveSpeed) * growRate * Time.deltaTime);
     }
 
     public void DecreaseSize()
     {
-        cam.orthographicSize /= Mathf.Pow(2, cameraGrowthRate/growRate);
-        transform.localScale /= 2;
+        camScale /= Mathf.Pow(2f, cameraGrowthRate/growRate);
+        transform.localScale /= 2f;
     }
 
     public void Grow()
     {
-        cam.orthographicSize *= Mathf.Pow(2, cameraGrowthRate / growRate);
-        transform.localScale *= 2;
+        camScale *= Mathf.Pow(2f, cameraGrowthRate / growRate);
+        transform.localScale *= 2f;
         justJammed = 2;
     }
 
@@ -158,7 +174,7 @@ public class PlayerController : MonoBehaviour
             int n = rb.GetContacts(contacts);
             for (int i = 0; i <= n; i++)
             {
-                if (contacts[i].enabled && contacts[i].separation <= -.1)
+                if (contacts[i].enabled && contacts[i].separation <= Mathf.Min(-.1f,-.1f* transform.localScale.x))
                 {
                     SFXManager.instance.PlaySquish();
                     GameManager.instance.ResetLevel();
