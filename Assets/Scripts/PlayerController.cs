@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         Squished();
         IncreaseSize();
         Animate();
+        Audio();
 
         //Debug.Log(isGrounded);
     }
@@ -135,5 +136,17 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetFloat("Speed", Mathf.Abs(xInput));
         anim.SetBool("isGrounded", isGrounded);
+    }
+
+    private void Audio()
+    {
+        if (isGrounded && !(xInput == 0))
+        {
+            SFXManager.instance.PlayFootsteps();
+        }
+        else
+        {
+            SFXManager.instance.StopFootsteps();
+        }
     }
 }
