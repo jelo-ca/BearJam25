@@ -141,15 +141,7 @@ public class PlayerController : MonoBehaviour
     private void IncreaseSize()
     {
         rb.mass = (transform.localScale.x / 0.2f);
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
         camScale *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x/moveSpeed) * cameraGrowthRate * Time.deltaTime);
-=======
->>>>>>> Stashed changes
-
-        cam.orthographicSize *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x/moveSpeed) * cameraGrowthRate * Time.deltaTime);
->>>>>>> 85e217418b442bf59956873bfba60a77eb298048
         transform.localScale *= Mathf.Exp(Mathf.Abs(rb.linearVelocity.x / moveSpeed) * growRate * Time.deltaTime);
     }
 
