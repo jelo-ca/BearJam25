@@ -26,9 +26,16 @@ public class GameManager : MonoBehaviour
 
         InitializeLevel();
 
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            MusicManager.instance.PlayMenuMusic();
+            if (MusicManager.instance != null)
+            {
+                MusicManager.instance.PlayMenuMusic();
+            }
+            else
+            {
+                Debug.LogWarning("MusicManager instance is null!");
+            }
         }
     }
 
@@ -73,10 +80,23 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         MusicManager.instance.PlayGameMusic();
+        Time.timeScale = 1;
     }
 
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+        MusicManager.instance.PlayGameMusic();
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+        MusicManager.instance.PlayMenuMusic();
     }
 }
