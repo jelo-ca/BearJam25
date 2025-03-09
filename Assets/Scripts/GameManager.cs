@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -105,6 +106,23 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         MusicManager.instance.StopMusic();
-        videoPlayer.SetActive(true);
+        videoPlayer.GetComponent<VideoPlayer>().Play();
+        StartCoroutine(WaitForVideoEnd());
+    }
+
+    IEnumerator WaitForVideoEnd()
+    {
+        while (!videoPlayer.GetComponent<VideoPlayer>().isPlaying)
+        {
+            yield return null;
+        }
+
+        // Wait until the video finishes
+        while (videoPlayer.GetComponent<VideoPlayer>().isPlaying)
+        {
+            yield return null;
+        }
+
+        GoToMainMenu();
     }
 }

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class MusicManager : MonoBehaviour
 {
