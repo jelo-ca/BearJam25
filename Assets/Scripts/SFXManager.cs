@@ -6,6 +6,10 @@ public class SFXManager : MonoBehaviour
     public static SFXManager instance;
 
     [SerializeField] AudioSource footstepSource;
+    [SerializeField] AudioSource honeyjamSource;
+    [SerializeField] AudioSource exitSource;
+    [SerializeField] AudioSource jumpSource;
+    [SerializeField] AudioSource squishSource;
 
     public float volume;
 
