@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded = true;
     public bool didntDoubleJumpedYet = true;
-    public bool justJammed = false;
+    public int justJammed = 0;
 
 
     void Awake()
@@ -45,13 +45,17 @@ public class PlayerController : MonoBehaviour
         ProcessInput();
         FlipPlayer();
         CheckGround();
-        Squished();
         IncreaseSize();
         Animate();
         Audio();
 
         //Debug.Log(isGrounded);
     }
+    void FixedUpdate()
+    {
+        Squished();
+    }
+
 
     private void GetInput()
     {
@@ -140,12 +144,12 @@ public class PlayerController : MonoBehaviour
     {
         cam.orthographicSize *= Mathf.Pow(2, cameraGrowthRate / growRate);
         transform.localScale *= 2;
-        justJammed = true;
+        justJammed = 2;
     }
 
     public void Squished()
     {
-        if (!justJammed)
+        if (justJammed==0)
         {
             ContactPoint2D[] contacts = new ContactPoint2D[32];
             int n = rb.GetContacts(contacts);
@@ -160,7 +164,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            justJammed = false;
+            justJammed--;
         }
     }
 
