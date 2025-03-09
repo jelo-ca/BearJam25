@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        if (cam != null) cam.orthographicSize = 5; // Reset camera zoom
-        SpawnPlayer(); // Respawn player
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
