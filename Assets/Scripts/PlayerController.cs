@@ -83,12 +83,14 @@ public class PlayerController : MonoBehaviour
         
         if (isGrounded)
         {
+            SFXManager.instance.PlayJump();
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             didntDoubleJumpedYet = true;
             anim.SetTrigger("Jump");
         }
         else if (didntDoubleJumpedYet)
         {
+            SFXManager.instance.PlayJump();
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             didntDoubleJumpedYet = false;
@@ -158,6 +160,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (contacts[i].enabled && contacts[i].separation <= -.1)
                 {
+                    SFXManager.instance.PlaySquish();
                     GameManager.instance.ResetLevel();
                     n = 0;
                 }

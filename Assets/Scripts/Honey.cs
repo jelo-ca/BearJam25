@@ -6,6 +6,7 @@ public class Honey : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SFXManager.instance.PlayHoneyjam();
             //cam.orthographicSize /= 2;
             collision.gameObject.GetComponent<PlayerController>().DecreaseSize();
             Destroy(gameObject);

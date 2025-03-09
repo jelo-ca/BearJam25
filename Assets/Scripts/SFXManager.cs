@@ -42,4 +42,24 @@ public class SFXManager : MonoBehaviour
             footstepSource.Stop();
         }
     }
+
+    public void PlayHoneyjam()
+    {
+        honeyjamSource.Play();
+    }
+
+    public void PlayExit()
+    {
+        exitSource.Play();
+    }
+
+    public void PlayJump()
+    {
+        jumpSource.Play();
+    }
+
+    public void PlaySquish()
+    {
+        squishSource.Play();
+    }
 }

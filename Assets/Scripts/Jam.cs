@@ -6,6 +6,7 @@ public class Jam : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SFXManager.instance.PlayHoneyjam();
             //cam.orthographicSize /= 2;
             collision.gameObject.GetComponent<PlayerController>().Grow();
             Destroy(gameObject);
